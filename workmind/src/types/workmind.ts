@@ -8,6 +8,14 @@ export interface Integrante {
   linkedinLink: string; 
 }
 
+// Interface para o formulário de Contato/FAQ (simula o POST para a API)
+export interface ContatoForm { 
+  nome: string;
+  email: string;
+  assunto: 'feedback' | 'parceria' | 'suporte'; 
+  mensagem: string;
+}
+
 // Tipos base
 export type Theme = "light" | "dark";
 export type StatusMissao = 'pendente' | 'em_progresso' | 'completa' | 'revisão';
