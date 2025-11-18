@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useFetch } from '../../hooks/useFetch';
+import { fetchTeamMembers } from '../../api/workmindService'; // Funcao da API (a ser criada)
 import { Integrante } from '../../types/workmind';
 
 function Integrantes() {
+  // 1. Consumo da API: usa o hook para buscar a lista de integrantes
+  // Inicializa com array vazio para garantir a tipagem correta na primeira renderização
+  const { data: members, loading, error } = useFetch(fetchTeamMembers, true, [] as Integrante[]);
+
+  // ... restante do componente (ainda sem os retornos de loading/error)
   const members: Integrante[] = []
 
   return (
