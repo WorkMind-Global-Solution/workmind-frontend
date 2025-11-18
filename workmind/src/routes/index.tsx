@@ -1,17 +1,18 @@
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import App from '../App.tsx';
 
-const Home = () => <div>Home Page</div>;
-const Integrantes = () => <div>Página de Integrantes</div>;
-const Sobre = () => <div>Página Sobre</div>;
-const Contato = () => <div>Página de Contato</div>;
-const TrilhaDetalhe = () => <div>Detalhe da Trilha (Dinâmica)</div>;
-const NotFound = () => <div>Erro 404 - Página não encontrada.</div>;
+// Importações 
+import Home from '../pages/Home';
+import Integrantes from '../pages/Integrantes';
+import Sobre from '../pages/Sobre';
+import Contato from '../pages/Contato';
+import TrilhaDetalhe from '../pages/TrilhaDetalhe';
+import NotFound from '../pages/NotFound';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, 
+    element: <App />,
     errorElement: <NotFound />, 
     children: [
       { path: "/", element: <Home /> }, 
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
       { path: "/about", element: <Sobre /> }, 
       { path: "/contact", element: <Contato /> }, 
       { path: "/trilha/:id", element: <TrilhaDetalhe /> }, 
-      { path: "/old-page", element: <Navigate to="/" /> }, 
+      { path: "/old-path", element: <Navigate to="/" /> }, 
     ],
   },
 ]);
