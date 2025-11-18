@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { Theme } from '../types/workmind'; 
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { type Theme } from '../types/workmind'; 
 
 interface ThemeContextValue {
   theme: Theme; 
@@ -19,10 +19,29 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
-  // Passa o valor (estado + função) para o Provider
+  useEffect(() => {
+    localStorage.setItem('workmind-theme', theme);
+    const rootElement = document.documentElement;
+
+    if (theme === 'dark') {
+      rootElement.classList.add('dark');
+    } else {
+      rootElement.classList.remove('dark');
+    }
+  }, [theme]);
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
 }
+
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error('useTheme deve ser usado dentro de um ThemeProvider');
+  }
+  return context;
+};
