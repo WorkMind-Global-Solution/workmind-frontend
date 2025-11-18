@@ -14,7 +14,12 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />, 
     errorElement: <NotFound />, 
-    children: [
+children: [
+      { path: "/", element: <Home /> }, // Rota Estática: Página Inicial
+      { path: "/team", element: <Integrantes /> }, // Rota Estática: Integrantes (Obrigatória)
+      { path: "/about", element: <Sobre /> }, // Rota Estática: Sobre/About (Obrigatória)
+      { path: "/contact", element: <Contato /> }, // Rota Estática: Contato (Obrigatória)
+        // Rotas dinâmicas e redirecionamentos viriam depois...
     ],
   },
 ]);
