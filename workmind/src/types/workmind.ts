@@ -17,3 +17,10 @@ export interface Missao {
   status: StatusMissao;
   xp: number;
 }
+
+export type PerfilMentorado = Integrante & {
+  // Combina dados básicos de Integrante com dados do Perfil da IA
+  objetivos: string[];
+  plano: 'basico' | 'pro' | 'premium'; // Union Type
+  ultimaAtividade: Date;
+};
