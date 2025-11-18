@@ -24,3 +24,5 @@ export type PerfilMentorado = Integrante & {
   plano: 'basico' | 'pro' | 'premium'; // Union Type
   ultimaAtividade: Date;
 };
+
+export type Theme = "light" | "dark";
