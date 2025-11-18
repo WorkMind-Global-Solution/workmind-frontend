@@ -1,29 +1,39 @@
-// Interface para dados do Alunos
+// Interface para dados do Integrante
 export interface Integrante {
   rm: string;         
-  nome: string;
+  nome: string;       
   turma: string;      
   fotoUrl: string;    
   githubLink: string; 
   linkedinLink: string; 
 }
 
-export type StatusMissao = 'pendente' | 'em_progresso' | 'completa';
+// Tipos base
+export type Theme = "light" | "dark";
+export type StatusMissao = 'pendente' | 'em_progresso' | 'completa' | 'revisão';
 
-// Interface para dados da Missão
+// 1. Export Interface Missao 
 export interface Missao {
   id: number;         
   titulo: string;
+  descricao: string;
   status: StatusMissao;
-  xp: number;
+  xpRecompensa: number;
 }
 
-export type PerfilMentorado = Integrante & {
-  // Combina dados básicos de Integrante com dados do Perfil 
-  objetivos: string[];
-  plano: 'basico' | 'pro' | 'premium'; 
-  ultimaAtividade: Date;
-};
+// 2. Export Interface TrilhaAprendizado 
+export interface TrilhaAprendizado {
+  id: number;
+  nome: string;
+  descricao: string;
+  missoes: Missao[]; // Usa a interface Missao
+  tecnologias: string[];
+  focoSustentavel: boolean; // Para Inclusão e Sustentabilidade
+}
 
-// Tipo para o estado do tema 
-export type Theme = "light" | "dark"; 
+// Tipo Avançado (Intersection Type) para Perfil da IA
+export type PerfilMentorado = Integrante & {
+  objetivosCarreira: string[];
+  habilidadesFortes: string[];
+  habilidadesFoco: string[];
+};

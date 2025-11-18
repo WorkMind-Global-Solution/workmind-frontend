@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
-import { fetchTeamMembers } from '../../api/workmindService';
-import { Integrante } from '../../types/workmind';
+import { fetchTeamMembers } from '../../api/workmindService'; 
+import { type Integrante } from '../../types/workmind'; 
+import { FaGithub, FaLinkedin } from 'react-icons/fa'; 
 
 function Integrantes() {
-  const { data: members, loading, error } = useFetch(fetchTeamMembers, true, [] as Integrante[]);
+  const { data: members, loading, error } = useFetch(fetchTeamMembers, true, [] as Integrante[]); 
 
   if (loading) {
     return (
@@ -19,7 +19,6 @@ function Integrantes() {
       <div className="p-8 text-center text-red-600 dark:text-red-400 min-h-[50vh]">
         <h3 className="text-2xl font-bold">Erro ao carregar a equipe!</h3>
         <p className="mt-2 text-lg">{error}</p>
-        <p className="mt-4">Por favor, verifique a conexão ou a API de Java (Mock).</p>
       </div>
     );
   }
@@ -35,7 +34,7 @@ function Integrantes() {
           <div 
             key={member.rm} 
             className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-200 dark:border-gray-700"
-          >}
+          >
             <img 
               src={member.fotoUrl} 
               alt={`Foto de ${member.nome}`} 
@@ -56,10 +55,7 @@ function Integrantes() {
                 className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 transition-colors"
                 title="GitHub"
               >
-                
-
-[Image of GitHub icon]
-
+                <FaGithub className="w-6 h-6" />
               </a>
               <a 
                 href={member.linkedinLink} 
@@ -68,10 +64,7 @@ function Integrantes() {
                 className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 transition-colors"
                 title="LinkedIn"
               >
-                
-
-[Image of LinkedIn icon]
-
+                <FaLinkedin className="w-6 h-6" />
               </a>
             </div>
           </div>
