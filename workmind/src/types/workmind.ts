@@ -1,14 +1,14 @@
-// Interface para dados do Integrante
-export interface Integrante {
-  rm: string;         
-  nome: string;       
-  turma: string;      
-  fotoUrl: string;    
-  githubLink: string; 
-  linkedinLink: string; 
+//Interface Usuario
+export interface Usuario {
+  id: number;
+  nomeCompleto: string; 
+  email: string;
+  perfilProfissional: string;
+  nivelConta: 'Free' | 'Premium'; 
+  pontuacao: number; 
 }
 
-// Interface para o formulário de Contato/FAQ (simula o POST para a API)
+//ContatoForm: Interface para o POST simulado do formulário de Contato.
 export interface ContatoForm { 
   nome: string;
   email: string;
@@ -16,32 +16,33 @@ export interface ContatoForm {
   mensagem: string;
 }
 
-// Tipos base
+// Tipos base 
 export type Theme = "light" | "dark";
 export type StatusMissao = 'pendente' | 'em_progresso' | 'completa' | 'revisão';
 
-// 1. Export Interface Missao 
+//Interface para elementos de gamificação e aprendizado.
 export interface Missao {
-  id: number;         
+  id: number;         
   titulo: string;
   descricao: string;
   status: StatusMissao;
-  xpRecompensa: number;
+  xpRecompensa: number; 
 }
 
-// 2. Export Interface TrilhaAprendizado 
+//Interface para as trilhas de conteúdo.
 export interface TrilhaAprendizado {
   id: number;
   nome: string;
   descricao: string;
-  missoes: Missao[]; // Usa a interface Missao
+  missoes: Missao[];
   tecnologias: string[];
-  focoSustentavel: boolean; // Para Inclusão e Sustentabilidade
+  focoSustentavel: boolean; 
 }
 
-// Tipo Avançado (Intersection Type) para Perfil da IA
-export type PerfilMentorado = Integrante & {
+export type PerfilMentorado = Usuario & {
   objetivosCarreira: string[];
   habilidadesFortes: string[];
   habilidadesFoco: string[];
 };
+
+export type UsuarioCreate = Omit<Usuario, 'id' | 'pontuacao'>;
