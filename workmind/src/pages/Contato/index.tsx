@@ -22,15 +22,12 @@ function Contato() {
     },
   });
 
-  // 2. Função de Submissão (simula o POST para a API Java)
   const onSubmit = async (data: ContatoForm) => {
     setIsSubmitting(true);
     setSuccessMessage(null);
     try {
-      // Simula o envio de dados (POST) para a API Java
       await submitData('/api/contact', data);
       
-      // Feedback ao usuário 
       setSuccessMessage('Mensagem enviada com sucesso! Em breve, entraremos em contato.');
       reset(); 
     } catch (error: any) {

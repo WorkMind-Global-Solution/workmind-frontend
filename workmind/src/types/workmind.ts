@@ -1,4 +1,3 @@
-//Interface Usuario
 export interface Usuario {
   id: number;
   nomeCompleto: string; 
@@ -8,7 +7,6 @@ export interface Usuario {
   pontuacao: number; 
 }
 
-//ContatoForm: Interface para o POST simulado do formulário de Contato.
 export interface ContatoForm { 
   nome: string;
   email: string;
@@ -16,11 +14,9 @@ export interface ContatoForm {
   mensagem: string;
 }
 
-// Tipos base 
 export type Theme = "light" | "dark";
 export type StatusMissao = 'pendente' | 'em_progresso' | 'completa' | 'revisão';
 
-//Interface para elementos de gamificação e aprendizado.
 export interface Missao {
   id: number;         
   titulo: string;
@@ -29,7 +25,6 @@ export interface Missao {
   xpRecompensa: number; 
 }
 
-//Interface para as trilhas de conteúdo.
 export interface TrilhaAprendizado {
   id: number;
   nome: string;
@@ -46,3 +41,12 @@ export type PerfilMentorado = Usuario & {
 };
 
 export type UsuarioCreate = Omit<Usuario, 'id' | 'pontuacao'>;
+
+export interface Integrante {
+  nome: string;
+  rm: string;
+  turma: string;
+  fotoUrl: string;
+  githubLink: string;
+  linkedinLink: string;
+}

@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import App from '../App.tsx';
 
-// Importações 
+// Importações
 import Home from '../pages/Home';
 import Integrantes from '../pages/Integrantes';
 import Sobre from '../pages/Sobre';
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <NotFound />, 
     children: [
-      { path: "/", element: <Home /> }, 
+      { index: true, element: <Home /> }, 
       { path: "/team", element: <Integrantes /> }, 
       { path: "/about", element: <Sobre /> }, 
       { path: "/contact", element: <Contato /> }, 

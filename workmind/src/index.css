@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+.dark-mode {
+    @apply bg-gray-900 text-gray-50;
+}
+
+.light-mode {
+    @apply bg-white text-gray-900;
+}
+
+.container-app {
+    @apply w-screen min-h-screen flex flex-col justify-between;
+}
+
+.content-main {
+    @apply flex-grow overflow-y-scroll;
+}

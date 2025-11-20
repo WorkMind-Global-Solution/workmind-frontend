@@ -2,36 +2,45 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { type Theme } from '../types/workmind'; 
 
 interface ThemeContextValue {
-  theme: Theme; 
-  toggleTheme: () => void; 
+  isDark: boolean; 
+  theme: Theme;    
+  toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
+  
   const [theme, setTheme] = useState<Theme>(() => {
     const stored = localStorage.getItem('workmind-theme') as Theme | null;
-    return stored ?? 'light';
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (stored) return stored;
+    return prefersDark ? 'dark' : 'light';
   });
 
-  // Função para alternar entre os estados
+  const isDark = theme === 'dark';
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
   useEffect(() => {
     localStorage.setItem('workmind-theme', theme);
-    const rootElement = document.documentElement;
+    const rootElement = document.documentElement; 
 
     if (theme === 'dark') {
       rootElement.classList.add('dark');
     } else {
       rootElement.classList.remove('dark');
     }
+
+    rootElement.classList.remove('light-mode', 'dark-mode'); 
+    
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, isDark, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

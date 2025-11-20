@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 
-// Define a estrutura de retorno
 interface FetchState<T> {
   data: T | null;
   loading: boolean;
@@ -20,13 +19,12 @@ export const useFetch = <T>(
   
   const { theme } = useTheme(); 
 
-  // Função para executar a chamada à API
+  // Função para executar a API
   const fetchData = useCallback(async (...args: any[]) => {
     setLoading(true);
     setError(null);
 
     try {
-      // Consumo da API
       const response = await apiFunction(...args);
       setData(response); 
     } catch (err: any) {
