@@ -3,30 +3,13 @@ import { submitData } from '../../api/workmindService';
 import { type ContatoForm } from '../../types/workmind';
 import { useState } from 'react';
 import { IoChevronDownOutline, IoChevronUpOutline } from 'react-icons/io5'; 
-
-const FAQ_DATA = [
-    {
-        id: 1,
-        pergunta: "O WorkMind utiliza Inteligência Artificial?",
-        resposta: "Sim. Cada usuário possui uma IA mentora que analisa o perfil, emoções e objetivos para criar planos de estudo personalizados, sugerindo pausas e atividades para o equilíbrio emocional.",
-    },
-    {
-        id: 2,
-        pergunta: "Como funciona a gamificação na plataforma?",
-        resposta: "O aprendizado é feito através de missões, trilhas e projetos práticos. Você ganha pontos e recompensas digitais conforme evolui, e pode se conectar com empresas parceiras para mostrar seu progresso.",
-    },
-    {
-        id: 3,
-        pergunta: "O projeto apoia a sustentabilidade?",
-        resposta: "Absolutamente. O WorkMind incentiva carreiras verdes e projetos sustentáveis (como energia limpa e economia circular) e oferece conteúdo gratuito para promover a inclusão produtiva em grupos vulneráveis.",
-    },
-];
-
+import { FAQ_DATA } from '../../data/faqData'; 
+import { type FaqItem } from '../../data/faqData'; 
 
 function Contato() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [openFaq, setOpenFaq] = useState<number | null>(null); // Estado para o FAQ (Accordion)
+  const [openFaq, setOpenFaq] = useState<number | null>(null); 
 
   const { 
     register, 
@@ -66,7 +49,7 @@ function Contato() {
                 Dúvidas Comuns
             </h3>
             <div className="space-y-4">
-                {FAQ_DATA.map((item) => (
+                {(FAQ_DATA as FaqItem[]).map((item) => (
                     <div key={item.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
                         <button
                             onClick={() => setOpenFaq(openFaq === item.id ? null : item.id)}
@@ -113,7 +96,7 @@ function Contato() {
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500 sm:text-sm"/>
                 {errors.nome && <p className="mt-1 text-sm text-red-500">{errors.nome.message}</p>}
                 </div>
-                
+
                 <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">E-mail</label>
                 <input id="email" type="email" {...register('email', { required: 'O e-mail é obrigatório', pattern: { value: /^\S+@\S+$/i, message: 'Formato de e-mail inválido'}})}
