@@ -2,8 +2,10 @@ import { useForm } from 'react-hook-form';
 import { submitData } from '../../api/workmindService'; 
 import { type ContatoForm } from '../../types/workmind';
 import { useState } from 'react';
+import { useTheme } from '../../contexts/ThemeContext';
 
 function Contato() {
+  const { isDark } = useTheme(); 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
@@ -27,7 +29,6 @@ function Contato() {
     setSuccessMessage(null);
     try {
       await submitData('/api/contact', data);
-      
       setSuccessMessage('Mensagem enviada com sucesso! Em breve, entraremos em contato.');
       reset(); 
     } catch (error: any) {
@@ -37,12 +38,26 @@ function Contato() {
     }
   };
 
+  const inputClasses = `mt-1 block w-full px-3 py-2 border rounded-md shadow-sm sm:text-sm focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors ${
+    isDark 
+      ? "bg-gray-800 border-gray-700 text-white placeholder-gray-400" 
+      : "bg-white border-gray-300 text-gray-900"
+  }`;
+
+  const labelClasses = `block text-sm font-medium ${isDark ? "text-gray-300" : "text-gray-700"}`;
+
   return (
-    <div className="p-8 max-w-4xl mx-auto bg-white dark:bg-gray-900 min-h-[70vh]">
-      <h2 className="text-4xl font-extrabold text-orange-700 dark:text-orange-400 mb-6">
+    <div className={`p-4 md:p-8 max-w-4xl mx-auto min-h-[70vh] transition-colors duration-200 ${
+        isDark ? "bg-gray-900" : "bg-white"
+    }`}>
+      
+      <h2 className={`text-2xl md:text-4xl font-extrabold mb-6 ${
+          isDark ? "text-orange-400" : "text-orange-700"
+      }`}>
         Contato & FAQ
       </h2>
-      <p className="mb-8 text-lg text-gray-700 dark:text-gray-300">
+    
+      <p className={`mb-8 text-base md:text-lg ${isDark ? "text-gray-300" : "text-gray-700"}`}>
         Use o formulário para enviar um feedback ou solicitar suporte.
       </p>
 
@@ -50,8 +65,8 @@ function Contato() {
         <div 
           className={`p-4 rounded-lg mb-4 font-semibold ${
             successMessage.startsWith('Erro') 
-              ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' 
-              : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+              ? (isDark ? 'bg-red-900 text-red-200' : 'bg-red-100 text-red-800')
+              : (isDark ? 'bg-green-900 text-green-200' : 'bg-green-100 text-green-800')
           }`}
         >
           {successMessage}
@@ -61,21 +76,20 @@ function Contato() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         
         <div>
-          <label htmlFor="nome" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="nome" className={labelClasses}>
             Seu Nome
           </label>
           <input
             id="nome"
             type="text"
             {...register('nome', { required: 'O nome é obrigatório', minLength: { value: 3, message: 'Mínimo de 3 caracteres' } })} 
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm dark:bg-gray-800 dark:text-white
-                       focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            className={inputClasses}
           />
           {errors.nome && <p className="mt-1 text-sm text-red-500">{errors.nome.message}</p>}
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="email" className={labelClasses}>
             E-mail
           </label>
           <input
@@ -88,21 +102,19 @@ function Contato() {
                 message: 'Formato de e-mail inválido',
               }
             })}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm dark:bg-gray-800 dark:text-white
-                       focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            className={inputClasses}
           />
           {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>}
         </div>
 
         <div>
-          <label htmlFor="assunto" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="assunto" className={labelClasses}>
             Assunto
           </label>
           <select
             id="assunto"
             {...register('assunto', { required: 'Selecione um assunto' })}
-            className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white
-                       focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+            className={inputClasses}
           >
             <option value="feedback">Feedback</option>
             <option value="parceria">Parceria</option>
@@ -112,15 +124,14 @@ function Contato() {
         </div>
         
         <div>
-          <label htmlFor="mensagem" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="mensagem" className={labelClasses}>
             Mensagem
           </label>
           <textarea
             id="mensagem"
             rows={4}
             {...register('mensagem', { required: 'A mensagem é obrigatória' })}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm dark:bg-gray-800 dark:text-white
-                       focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            className={inputClasses}
           />
           {errors.mensagem && <p className="mt-1 text-sm text-red-500">{errors.mensagem.message}</p>}
         </div>
@@ -128,7 +139,7 @@ function Contato() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 
+          className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 
                      hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-150
                      disabled:opacity-50 disabled:cursor-not-allowed"
         >

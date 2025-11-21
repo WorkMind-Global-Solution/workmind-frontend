@@ -1,18 +1,24 @@
 import { useTheme } from '../../contexts/ThemeContext';
-import { IoSunnyOutline as SolIcon, IoMoonOutline as LuaIcon } from 'react-icons/io5'; 
+import { IoSunnyOutline, IoMoonOutline } from 'react-icons/io5'; 
 
-function ThemeToggleButton() { 
+export default function ThemeToggleButton() { 
   const { isDark, toggleTheme } = useTheme(); 
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
-      className="p-2 rounded-full text-gray-800 bg-gray-200 dark:text-yellow-400 dark:bg-gray-700 
-                 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
-      aria-label="Alternar Tema Claro/Escuro" >
-      {isDark ? <SolIcon className="w-6 h-6" /> : <LuaIcon className="w-6 h-6" />}
+      className="p-2 rounded-full text-lg transition-colors duration-200
+                 bg-gray-200 text-gray-600 hover:bg-gray-300
+                 dark:bg-gray-700 dark:text-yellow-400 dark:hover:bg-gray-600"
+      aria-label={isDark ? "Ativar modo claro" : "Ativar modo escuro"}
+      title={isDark ? "Modo Claro" : "Modo Escuro"}
+    >
+      {isDark ? (
+        <IoSunnyOutline className="w-6 h-6" />
+      ) : (
+        <IoMoonOutline className="w-6 h-6" />
+      )}
     </button>
   );
 }
-
-export default ThemeToggleButton;

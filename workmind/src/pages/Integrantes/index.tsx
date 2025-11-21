@@ -1,31 +1,43 @@
-  import { useFetch } from '../../hooks/useFetch';
-  import { fetchTeamMembers } from '../../api/workmindService'; 
-  import { type Integrante } from '../../types/workmind'; 
-  import { FaGithub, FaLinkedin } from 'react-icons/fa'; 
+import { useFetch } from '../../hooks/useFetch';
+import { fetchTeamMembers } from '../../api/workmindService'; 
+import { type Integrante } from '../../types/workmind'; 
+import { FaGithub, FaLinkedin } from 'react-icons/fa'; 
+import { useTheme } from '../../contexts/ThemeContext';
 
-  function Integrantes() {
-    const { data: members, loading, error } = useFetch(fetchTeamMembers, true, [] as Integrante[]); 
+function Integrantes() {
+  const { isDark } = useTheme();
+  const { data: members, loading, error } = useFetch(fetchTeamMembers, true, [] as Integrante[]); 
 
-    if (loading) {
-      return (
-        <div className="p-8 text-center text-lg text-blue-600 dark:text-blue-400 min-h-[50vh]">
-          Carregando dados dos integrantes...
-        </div>
-      );
-    }
-
-    if (error) {
-      return (
-        <div className="p-8 text-center text-red-600 dark:text-red-400 min-h-[50vh]">
-          <h3 className="text-2xl font-bold">Erro ao carregar a equipe!</h3>
-          <p className="mt-2 text-lg">{error}</p>
-        </div>
-      );
-    }
-
+  if (loading) {
     return (
-      <div className="p-8 max-w-6xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-indigo-700 dark:text-indigo-400 mb-8">
+      <div className={`p-8 text-center text-lg min-h-[50vh] flex items-center justify-center ${
+        isDark ? "text-blue-400 bg-gray-900" : "text-blue-600 bg-gray-50"
+      }`}>
+        Carregando dados dos integrantes...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={`p-8 text-center min-h-[50vh] flex flex-col items-center justify-center ${
+        isDark ? "text-red-400 bg-gray-900" : "text-red-600 bg-gray-50"
+      }`}>
+        <h3 className="text-2xl font-bold">Erro ao carregar a equipe!</h3>
+        <p className="mt-2 text-lg">{error}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`min-h-screen p-4 md:p-8 transition-colors duration-200 ${
+        isDark ? "bg-gray-900" : "bg-gray-50"
+    }`}>
+      <div className="max-w-6xl mx-auto">
+        
+        <h2 className={`text-2xl md:text-4xl font-extrabold mb-8 text-center md:text-left ${
+            isDark ? "text-indigo-400" : "text-indigo-700"
+        }`}>
           Time WorkMind: Nossos Integrantes
         </h2>
         
@@ -33,17 +45,29 @@
           {members?.map((member) => (
             <div 
               key={member.rm} 
-              className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-200 dark:border-gray-700"
+              className={`p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border ${
+                  isDark 
+                  ? "bg-gray-800 border-gray-700" 
+                  : "bg-white border-gray-200"
+              }`}
             >
               <img 
                 src={member.fotoUrl} 
                 alt={`Foto de ${member.nome}`} 
-                className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-blue-500 dark:border-blue-400"
+                className={`w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 ${
+                    isDark ? "border-blue-400" : "border-blue-500"
+                }`}
               />
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white text-center">
+              
+              <h3 className={`text-xl font-bold text-center ${
+                  isDark ? "text-white" : "text-gray-900"
+              }`}>
                 {member.nome}
               </h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1">
+              
+              <p className={`text-sm text-center mt-1 ${
+                  isDark ? "text-gray-400" : "text-gray-500"
+              }`}>
                 RM: {member.rm} | Turma: {member.turma}
               </p>
 
@@ -52,7 +76,11 @@
                   href={member.githubLink} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 transition-colors"
+                  className={`transition-colors ${
+                      isDark 
+                      ? "text-gray-300 hover:text-indigo-400" 
+                      : "text-gray-600 hover:text-indigo-600"
+                  }`}
                   title="GitHub"
                 >
                   <FaGithub className="w-6 h-6" />
@@ -61,7 +89,11 @@
                   href={member.linkedinLink} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 transition-colors"
+                  className={`transition-colors ${
+                      isDark 
+                      ? "text-gray-300 hover:text-indigo-400" 
+                      : "text-gray-600 hover:text-indigo-600"
+                  }`}
                   title="LinkedIn"
                 >
                   <FaLinkedin className="w-6 h-6" />
@@ -71,7 +103,8 @@
           ))}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
-  export default Integrantes;
+export default Integrantes;
