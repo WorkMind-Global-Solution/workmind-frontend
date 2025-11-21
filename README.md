@@ -6,9 +6,9 @@ O **WorkMind** é uma aplicação Front-End desenvolvida para a Global Solution 
 
 ## 2. Status do Projeto
 
-[![Status](https://img.shields.io/badge/Status-CONCLU%C3%8DO-brightgreen)]([LINK_DA_SUA_URL_VERCEL])
+[![Status](https://img.shields.io/badge/Status-CONCLU%C3%8DO-brightgreen)]([workmind-frontend.vercel.app)
 [![API](https://img.shields.io/badge/API_Java-Integrada-blue)](https://workmind-java.onrender.com/api/usuarios)
-[![Front-End](https://img.shields.io/badge/Deploy-Vercel-black)]([LINK_DA_SUA_URL_VERCEL])
+[![Front-End](https://img.shields.io/badge/Deploy-Vercel-black)](workmind-frontend.vercel.app)
 
 ## 3. Sumário 
 
@@ -63,7 +63,7 @@ Produção (Deploy): A versão final e integrada da aplicação está disponíve
 
 ### 🌐 URL da Aplicação Publicada (Vercel)
 
-[INSIRA A URL DE PRODUÇÃO DA VERCEL AQUI]
+https://workmind-frontend.vercel.app
 
 ## 8. Estrutura de Pastas
 A arquitetura do projeto é modular e segue o padrão SPA (Single Page Application):
@@ -106,5 +106,5 @@ Gustavo Bardy    RM566136
 [INSERIR AQUI UMA IMAGEM]
 
 📺 Link do Vídeo de Demonstração
-YouTube: 
+YouTube: ======
 Github: https://github.com/WorkMind-Global-Solution/workmind-frontend.git 
