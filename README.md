@@ -4,7 +4,7 @@
 
 O **WorkMind** é uma aplicação Front-End desenvolvida para a Global Solution 2025. Nossa solução visa preparar jovens e profissionais para as carreiras do futuro, combinando inteligência artificial, aprendizagem contínua e foco em saúde mental e sustentabilidade, tudo em um único ecossistema digital.
 
-## 2. Status do Projeto (0,28 ponto)
+## 2. Status do Projeto
 
 [![Status](https://img.shields.io/badge/Status-CONCLU%C3%8DO-brightgreen)]([LINK_DA_SUA_URL_VERCEL])
 [![API](https://img.shields.io/badge/API_Java-Integrada-blue)](https://workmind-java.onrender.com/api/usuarios)
@@ -20,7 +20,6 @@ O **WorkMind** é uma aplicação Front-End desenvolvida para a Global Solution 
 * [9. Rotas Principais](#9-endpoints-ou-rotas-principais)
 * [10. Autores e Créditos](#10-autores-e-créditos)
 * [11. Screenshots / Demonstração](#11-screenshots--demonstração-028-ponto)
-* [12. Contato](#12-contato-028-ponto-e-66-pontos)
 
 ## 4. Sobre o Projeto 
 
@@ -108,4 +107,4 @@ Gustavo Bardy    RM566136
 
 📺 Link do Vídeo de Demonstração
 YouTube: 
-Github: 
+Github: https://github.com/WorkMind-Global-Solution/workmind-frontend.git 
