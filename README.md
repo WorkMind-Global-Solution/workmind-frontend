@@ -1,4 +1,4 @@
-# 💡 WorkMind – Plataforma de Aprendizado e Bem-Estar Inteligente
+# WorkMind – Plataforma de Aprendizado e Bem-Estar Inteligente
 
 ## 1. Descrição
 
@@ -61,7 +61,7 @@ A aplicação pode ser acessada de duas formas:
 Localmente: Após a instalação, acesse a URL fornecida pelo npm run dev (ex: http://localhost:5173).
 Produção (Deploy): A versão final e integrada da aplicação está disponível publicamente na Vercel:
 
-### 🌐 URL da Aplicação Publicada (Vercel)
+### URL da Aplicação Publicada (Vercel)
 
 https://workmind-frontend.vercel.app
 
@@ -101,10 +101,7 @@ Rafael Siqueira  RM564900
 Gustavo Bardy    RM566136
 
 ## 11. Screenshots / Links
-[IMAGEM]
 
-[INSERIR AQUI UMA IMAGEM]
-
-📺 Link do Vídeo de Demonstração
-YouTube: ======
+Link do Vídeo de Demonstração
+YouTube: https://youtu.be/Lm804TqGD6w
 Github: https://github.com/WorkMind-Global-Solution/workmind-frontend.git 
